@@ -7,6 +7,7 @@ import Loading from '../components/Loading';
 export default class Search extends Component {
   state = {
     searchArtist: '',
+    stockSearch: '',
     btnDisabled: true,
     loading: false,
     renderResult: false,
@@ -28,26 +29,32 @@ export default class Search extends Component {
     });
 
     const { searchArtist } = this.state;
+    const stockSearch = searchArtist;
     const result = await searchAlbumsAPI(searchArtist);
 
     if (result.length) {
       this.setState({
+        stockSearch,
         albums: result,
         renderResult: true,
         loading: false,
         notFound: false,
+        searchArtist: '',
       });
     } else {
       this.setState({
+        stockSearch,
         loading: false,
         renderResult: false,
         notFound: true,
+        searchArtist: '',
       });
     }
   };
 
   render() {
     const { searchArtist,
+      stockSearch,
       btnDisabled,
       albums,
       loading,
@@ -74,7 +81,7 @@ export default class Search extends Component {
           { loading ? <Loading /> : null}
           { renderResult ? (
             <section className="result">
-              <h1>{`Resultado de álbuns de: ${albums[0].artistName}`}</h1>
+              <h1>{`Resultado de álbuns de: ${stockSearch}`}</h1>
               <ul>
                 {albums.map((album) => (
                   <AlbumCard key={ album.collectionId } album={ album } />

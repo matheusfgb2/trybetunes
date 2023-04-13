@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export default class AlbumCard extends Component {
   render() {
     const { album: {
-      artistId,
       artistName,
       collectionId,
       collectionName,
-      collectionPrice,
-      artworkUrl100,
-      releaseDate,
-      trackCount } } = this.props;
+      artworkUrl100 } } = this.props;
     return (
       <li>
         <Link
@@ -26,3 +23,12 @@ export default class AlbumCard extends Component {
     );
   }
 }
+
+AlbumCard.propTypes = {
+  album: PropTypes.shape({
+    artistName: PropTypes.string,
+    collectionId: PropTypes.number,
+    collectionName: PropTypes.string,
+    artworkUrl100: PropTypes.string,
+  }).isRequired,
+};
