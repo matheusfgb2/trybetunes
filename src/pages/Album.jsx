@@ -28,19 +28,27 @@ export default class Album extends Component {
       <>
         <Header />
         <div data-testid="page-album">
+
           {
             didFetch ? (
               <>
                 <h4 data-testid="album-name">{musics[0].collectionName}</h4>
                 <p data-testid="artist-name">{musics[0].artistName}</p>
-                <img src={ musics[0].artworkUrl100 } alt={ musics[0].collectionName } />
-                {musics.map((music) => (<MusicCard
-                  key={ Math.random() }
-                  music={ music }
-                />))}
+                <img
+                  src={ musics[0].artworkUrl100 }
+                  alt={ musics[0].collectionName }
+                />
+                {musics.map((music) => (
+                  <MusicCard
+                    key={ Math.random() }
+                    music={ music }
+                    handleFavorite={ this.handleFavorite }
+                  />
+                ))}
               </>
             ) : null
           }
+
         </div>
       </>
     );
