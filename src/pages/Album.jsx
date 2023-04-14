@@ -42,7 +42,6 @@ export default class Album extends Component {
                   <MusicCard
                     key={ Math.random() }
                     music={ music }
-                    handleFavorite={ this.handleFavorite }
                   />
                 ))}
               </>

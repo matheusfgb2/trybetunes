@@ -7,23 +7,31 @@ export default class MusicCard extends Component {
   state = {
     loading: false,
     favoriteSongs: [],
+    songDeleted: false,
   };
 
   componentDidMount() {
     this.fetchGetFavoriteSongs();
   }
 
-  handleFavorite = async ({ target }) => {
+  handleChangeFavorite = async ({ target }) => {
+    const { id } = target;
     const { favoriteSongs } = this.state;
-    const { music } = this.props;
+    const { music, dodelete } = this.props;
     this.setState({
       loading: true,
     });
 
-    if (favoriteSongs.every((song) => song.trackId !== Number(target.id))) {
+    if (favoriteSongs.every(({ trackId }) => trackId !== Number(id))) {
       await addSong(music);
+      this.setState({
+        songDeleted: false,
+      });
     } else {
       await removeSong(music);
+      this.setState({
+        songDeleted: dodelete,
+      });
     }
     this.fetchGetFavoriteSongs();
   };
@@ -40,10 +48,10 @@ export default class MusicCard extends Component {
   };
 
   render() {
-    const { loading, favoriteSongs } = this.state;
+    const { loading, favoriteSongs, songDeleted } = this.state;
     const { music } = this.props;
     const { trackId, trackName, previewUrl } = music;
-    if (!trackName) return;
+    if (!trackName || songDeleted) return;
     return (
       <li>
         { loading ? <Loading />
@@ -60,7 +68,7 @@ export default class MusicCard extends Component {
                 <input
                   type="checkbox"
                   id={ trackId }
-                  onChange={ this.handleFavorite }
+                  onChange={ this.handleChangeFavorite }
                   checked={ favoriteSongs.some((song) => song.trackId === trackId) }
                 />
                 Favorita
@@ -78,4 +86,9 @@ MusicCard.propTypes = {
     trackName: PropTypes.string,
     previewUrl: PropTypes.string,
   }).isRequired,
+  dodelete: PropTypes.bool,
+};
+
+MusicCard.defaultProps = {
+  dodelete: false,
 };
