@@ -20,10 +20,15 @@ export default class Login extends Component {
   };
 
   handleClick = async () => {
+    const { nameInput } = this.state;
+    const user = {
+      name: nameInput,
+    };
+
     this.setState({
       loading: true,
     });
-    await createUser({ name: 'Name' });
+    await createUser(user);
     this.setState({
       createdUser: true,
       loading: false,
