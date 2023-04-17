@@ -82,7 +82,10 @@ export default class MusicCard extends Component {
 
 MusicCard.propTypes = {
   music: PropTypes.shape({
-    trackId: PropTypes.number,
+    trackId: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
     trackName: PropTypes.string,
     previewUrl: PropTypes.string,
   }).isRequired,

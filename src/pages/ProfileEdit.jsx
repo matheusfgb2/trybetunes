@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import Form from '../components/Form';
@@ -31,7 +31,6 @@ export default class ProfileEdit extends Component {
       descriptionInput: description,
       imageInput: image,
       loading: false,
-      redirect: false,
     });
   };
 
@@ -44,6 +43,7 @@ export default class ProfileEdit extends Component {
 
   handleClick = async (event) => {
     event.preventDefault();
+    const { history } = this.props;
     const {
       nameInput,
       emailInput,
@@ -60,10 +60,7 @@ export default class ProfileEdit extends Component {
       loading: true,
     });
     await updateUser(user);
-    this.setState({
-      loading: false,
-      redirect: true,
-    });
+    history.push('/profile');
   };
 
   validateForm = () => {
@@ -93,8 +90,7 @@ export default class ProfileEdit extends Component {
       emailInput,
       descriptionInput,
       imageInput,
-      disableButton,
-      redirect } = this.state;
+      disableButton } = this.state;
     return (
       <>
         <Header />
@@ -110,9 +106,14 @@ export default class ProfileEdit extends Component {
               disableButton={ disableButton }
             />
           )}
-          {redirect ? <Redirect to="/profile" /> : null}
         </div>
       </>
     );
   }
 }
+
+ProfileEdit.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
