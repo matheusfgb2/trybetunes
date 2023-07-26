@@ -20,6 +20,7 @@ export default class Form extends Component {
           data-testid="edit-input-name"
           onChange={ handleChange }
           value={ nameInput }
+          placeholder="Nome"
         />
         <input
           name="emailInput"
@@ -27,6 +28,7 @@ export default class Form extends Component {
           data-testid="edit-input-email"
           onChange={ handleChange }
           value={ emailInput }
+          placeholder="Email"
         />
         <input
           name="descriptionInput"
@@ -34,6 +36,7 @@ export default class Form extends Component {
           data-testid="edit-input-description"
           onChange={ handleChange }
           value={ descriptionInput }
+          placeholder="Descrição"
         />
         <input
           name="imageInput"
@@ -41,6 +44,7 @@ export default class Form extends Component {
           data-testid="edit-input-image"
           onChange={ handleChange }
           value={ imageInput }
+          placeholder="URL da imagem"
         />
         <button
           data-testid="edit-button-save"

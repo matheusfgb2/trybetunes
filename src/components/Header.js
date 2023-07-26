@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
@@ -23,13 +24,24 @@ export default class Header extends Component {
 
   render() {
     const { loading, userName } = this.state;
+    const { isProfilePage } = this.props;
     return (
       <header data-testid="header-component">
         <Link to="/search" data-testid="link-to-search">Search</Link>
         <Link to="/favorites" data-testid="link-to-favorites">Favorites</Link>
         <Link to="/profile" data-testid="link-to-profile">Profile</Link>
-        {loading ? <Loading /> : <p data-testid="header-user-name">{userName}</p> }
+        { !isProfilePage && (
+          loading ? <Loading /> : <p data-testid="header-user-name">{userName}</p>
+        )}
       </header>
     );
   }
 }
+
+Header.propTypes = {
+  isProfilePage: PropTypes.bool,
+};
+
+Header.defaultProps = {
+  isProfilePage: false,
+};

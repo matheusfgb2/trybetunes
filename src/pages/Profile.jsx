@@ -29,14 +29,15 @@ export default class Profile extends Component {
     const { user, loading } = this.state;
     return (
       <>
-        <Header />
+        <Header isProfilePage />
         <div data-testid="page-profile">
           { loading ? <Loading /> : (
             <>
+              <p>{`Nome: ${user.name}`}</p>
+              <p>{`Email: ${user.email}`}</p>
+              <p>{`Descrição: ${user.description}`}</p>
               <img src={ user.image } alt={ user.name } data-testid="profile-image" />
-              <p>{user.name}</p>
-              <p>{user.email}</p>
-              <p>{user.description}</p>
+              <br />
               <Link to="/profile/edit">Editar perfil</Link>
             </>
           )}
