@@ -1,12 +1,13 @@
 # :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
 
-Este projeto foi desenvolvido no curso da Trybe, durante o módulo de front-end, para solidificar conhecimentos de React, ciclos de vida de componentes de classe, manipulação de estado, React Router; além de requisições e consumo de dados via API.
+# Projeto TrybeTunes
+
+## Sobre
+O projeto TrybeTunes, desenvolvido durante o módulo de front-end da Trybe, consistiu em criar uma aplicação capaz de reproduzir músicas de diversas bandas e artistas.  Os usuários podem fazer login, pesquisar por bandas ou artistas, visualizar os álbuns disponíveis, ver as músicas de um álbum selecionado e ouvir uma prévia delas. Além disso, eles podem favoritar e desfavoritar músicas, gerenciar a lista de músicas favoritas e editar o perfil do usuário logado.
+
+## Habilidades Utilizadas
+- React JS
+- Ciclos de vida de componentes de classe
+- Manipulação de estado
+- React Router
+- Requisições e consumo de dados via API
